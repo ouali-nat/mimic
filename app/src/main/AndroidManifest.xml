@@ -13,6 +13,8 @@
          application overlay (more robust); otherwise it falls back to an
          accessibility overlay, which needs no permission. -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- Optional integration for launching user-selected scripts through Termux. -->
+    <uses-permission android:name="com.termux.permission.RUN_COMMAND" />
 
     <!-- package visibility (android 11+, target sdk 30+): without this, other
          apps are invisible and `launch` cannot resolve them. declare that we

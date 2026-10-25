@@ -45,17 +45,25 @@ class MimicService : AccessibilityService() {
         fun isEnabled(): Boolean = instance != null
     }
 
+    private var floatingMenu: FloatingMenu? = null
+
     override fun onServiceConnected() {
         super.onServiceConnected()
         instance = this
+        floatingMenu?.remove()
+        floatingMenu = FloatingMenu(this).also { it.show() }
     }
 
     override fun onUnbind(intent: Intent?): Boolean {
+        floatingMenu?.remove()
+        floatingMenu = null
         if (instance === this) instance = null
         return super.onUnbind(intent)
     }
 
     override fun onDestroy() {
+        floatingMenu?.remove()
+        floatingMenu = null
         if (instance === this) instance = null
         super.onDestroy()
     }
